@@ -21,7 +21,8 @@ resource "aws_iam_instance_profile" "ecs_cluster_instance_profile" {
   role = "${aws_iam_role.ecs_cluster_instance_role.name}"
 }
 
-resource "aws_iam_policy_attachment" "ecs-cluster-instance-policy" {
-  name = "${aws_iam_role.ecs_cluster_instance_role.name}"
+resource "aws_iam_role_policy_attachment" "ecs-cluster-instance-policy" {
+  role = "${aws_iam_role.ecs_cluster_instance_role.name}"
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role"
+  depends_on = ["aws_iam_role.ecs_cluster_instance_role"]
 }
