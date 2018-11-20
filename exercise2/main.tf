@@ -6,11 +6,20 @@ resource "aws_ecs_cluster" "ecs-cluster" {
   name = "${local.unique_id}-ecs-cluster"
 }
 
+data "aws_subnet" "public_subnet" {
+  filter {
+    name   = "tag:Name"
+    values = ["dev-ecs-workshop-public-subnet-0"]
+  }
+  vpc_id = "${data.aws_vpc.vpc.id}"
+}
+
 resource "aws_instance" "cluster-ec2-instance" {
   ami = "ami-07eb698ce660402d2"
   instance_type = "t3.micro"
   iam_instance_profile = "${aws_iam_instance_profile.ecs_cluster_instance_profile.name}"
   security_groups = ["${aws_security_group.ecs-instance-security.id}"]
+  subnet_id = "${data.aws_subnet.public_subnet.id}"
 
   user_data = <<EOF
     cat <<'CONFIG' >> /etc/ecs/ecs.config
