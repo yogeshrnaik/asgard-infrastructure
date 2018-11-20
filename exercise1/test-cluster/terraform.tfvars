@@ -1,3 +1,2 @@
-instance_id=
-cluster_name=
-service_port=
+instance_id= "i-0e10e76bca7318667"
+cluster_name= "ecs-workshop-ecs-cluster"

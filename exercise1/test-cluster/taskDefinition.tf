@@ -1,18 +1,18 @@
 terraform {
-  required_version = ">= 0.11.7"
+  required_version = "= 0.11.10"
 
     backend "s3" {
       region     = "us-east-1"
       bucket     = "ecs-workshop-terraform-state-dev"
-      key        = "${unique_name}-cluster-test-nginx.tfstate"
+      key        = "ecs-workshop-cluster-test-nginx.tfstate"
       encrypt    = "true"
       dynamodb_table = "Terraform-Lock-Table"
     }
 }
 
 provider "aws" {
-  region  = "eu-west-1"
-  version = "~> 1.26"
+  region = "us-east-1"
+  version = "~> 1.46"
 }
 
 
@@ -36,9 +36,4 @@ resource "aws_ecs_service" "nginx-service" {
   cluster         = "${data.aws_ecs_cluster.vtw-dev-ecs-cluster.cluster_name}"
   task_definition = "${aws_ecs_task_definition.nginx-service.arn}"
   desired_count   = 1
-}
-
-
-output "test_endpoint" {
-  value = "curl -v --insecure http://${data.aws_instance.cluster_instance.public_ip}:${var.service_port}/"
 }
