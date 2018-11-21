@@ -1,7 +1,7 @@
 resource "aws_alb" "asgard_alb" {
   name = "${local.unique_id}-asgard-alb"
   internal = false
-  security_groups = []
+  security_groups = ["${aws_security_group.alb_sg.id}"]
   subnets = ["${data.aws_subnet_ids.public_subnet_ids.ids}"]
 
   tags {
