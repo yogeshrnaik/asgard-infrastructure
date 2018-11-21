@@ -26,8 +26,7 @@ resource "aws_security_group_rule" "allow_all_traffic_ephemeral_port_range" {
   to_port = 61000
   type = "ingress"
 
-  //source_security_group_id = "${element(data.aws_alb.alb.security_groups, 0)}"
-  cidr_blocks = ["0.0.0.0/0"]
+  source_security_group_id = "${element(data.aws_alb.alb.security_groups, 0)}"
 }
 
 resource "aws_security_group_rule" "allow_outgoing_traffic" {
