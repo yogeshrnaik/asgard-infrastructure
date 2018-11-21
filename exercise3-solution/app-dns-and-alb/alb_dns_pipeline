@@ -2,7 +2,7 @@ pipeline {
     agent none
     options { skipDefaultCheckout() }
     environment {
-        TERRAFORM_DIR = "app-dns-and-alb"
+        TERRAFORM_DIR = "exercise3-solution/app-dns-and-alb"
     }
     stages {
         stage('checkout') {
