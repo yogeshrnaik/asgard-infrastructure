@@ -8,9 +8,9 @@ We need to run the instance as part of auto-scaling group.
 
 # Create infrastructure
 
-- Add autoscaling group
-
 - Create launch configuration to launch instances 
+
+- Add autoscaling group
 
 - Use the same Security group but attach it to Launch configuration.  
 

@@ -15,7 +15,6 @@ provider "aws" {
   version = "~> 1.46"
 }
 
-
 resource "aws_ecs_task_definition" "nginx-service" {
   family                = "nginx-service"
   container_definitions = "${file("nginx-ecs-task-definition.json")}"
