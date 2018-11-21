@@ -2,7 +2,7 @@ pipeline {
     agent none
     options { skipDefaultCheckout() }
     environment {
-        TERRAFORM_DIR = "exercise3"
+        TERRAFORM_DIR = "exercise3-solution/cluster"
     }
     stages {
         stage('checkout') {
