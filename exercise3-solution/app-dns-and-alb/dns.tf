@@ -1,7 +1,7 @@
 module "asgard-dns" {
   source = "../route53"
   lb_zone_id = "${aws_alb.asgard_alb.zone_id}"
-  app_name = "asgard"
+  app_name = "${local.unique_id}-asgard"
   dns_record_set_name = "${local.unique_id}.ecsworkshop2018.online"
   weight = "100"
   env = "dev"
