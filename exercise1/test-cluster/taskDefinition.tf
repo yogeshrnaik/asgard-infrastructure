@@ -4,7 +4,7 @@ terraform {
     backend "s3" {
       region     = "us-east-1"
       bucket     = "ecs-workshop-terraform-state-dev"
-      key        = "ecs-workshop-cluster-test-nginx.tfstate"
+      key        = "${unique}-cluster-test-nginx.tfstate"
       encrypt    = "true"
       dynamodb_table = "Terraform-Lock-Table"
     }
