@@ -1,5 +1,5 @@
 locals {
-  unique_id = "ecs-workshop"
+
 }
 
 resource "aws_ecs_cluster" "ecs-cluster" {
