@@ -30,7 +30,7 @@ resource "aws_alb_target_group" "alb_default_tg" {
 
 
 locals {
-  unique_id = "ecs-workshop"
+  
 }
 
 data "aws_subnet_ids" "public_subnet_ids" {
