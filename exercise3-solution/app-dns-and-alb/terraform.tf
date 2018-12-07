@@ -3,7 +3,7 @@ terraform {
 
   backend "s3" {
     bucket = "ecs-workshop-terraform-state-dev"
-    key = "${unique}-alb-dev.tfstate"
+    key = "ecs-workshop-alb-dev.tfstate"
     dynamodb_table = "Terraform-Lock-Table"
     encrypt = true
     region = "us-east-1"
