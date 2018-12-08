@@ -5,6 +5,9 @@ data "aws_vpc" "vpc" {
     values = ["dev-ecs-workshop"]
   }
 }
+data "aws_alb" "alb" {
+  name = "${local.unique_id}-asgard-alb"
+}
 
 resource "aws_security_group" "ecs-instance-security" {
   name = "${local.unique_id}-ecs-instance-sg"
@@ -22,7 +25,8 @@ resource "aws_security_group_rule" "allow_all_traffic_ephemeral_port_range" {
   to_port = 61000
   type = "ingress"
 
-  cidr_blocks = ["0.0.0.0/0"]
+  // cidr_blocks = ["0.0.0.0/0"]
+  source_security_group_id = "${element(data.aws_alb.alb.security_groups, 0)}"
 }
 
 resource "aws_security_group_rule" "allow_outgoing_traffic" {
